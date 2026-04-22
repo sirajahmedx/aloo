@@ -240,7 +240,7 @@ function Letter() {
             transition={{ duration: 1.8, delay: 0, ease }}
             className="mb-3 font-sans text-[11px] font-light tracking-[0.3em] text-neutral-500 uppercase sm:text-xs"
           >
-            for Mustafa &mdash; or as I call him,
+            for Mustafa &mdash; or as we call him,
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 12, filter: "blur(10px)" }}
