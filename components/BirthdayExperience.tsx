@@ -23,8 +23,8 @@ const testimonials = [
   { quote: "There\u2019s a stillness in him. Not emptiness. Stillness. Like someone who has felt a lot and chose to carry it quietly.", name: "safa" },
   { quote: "He\u2019s mature in a way that feels natural, not forced. Knows when to speak, knows when to just be there.", name: "penguin" },
   { quote: "When he talks about something he cares about, you feel it. He means what he says. Every word comes from somewhere real.", name: "penguin" },
-  { quote: "He makes you feel heard. Like what you\u2019re saying actually matters to him. That\u2019s rarer than people think.", name: "penguin" },
-  { quote: "In a loud world, softness looks like a choice. In him, it just looks like who he is.", name: "penguin" },
+  { quote: "Aluu the guy who first takes bout the poetry and books the sweetest guy.", name: "ahmed" },
+  { quote: "Happy birthday, aloo. Talking to you just feels easy, like one of those days that’s warm for no reason. You make people feel heard without even trying, and that actually means a lot. I love our deep talks, even when you go way off track. You’ve got a way with words too, so I’m definitely waiting on more of your writing. Hope we stay like this for a long time. ", name: "saif" },
 ];
 
 const heroLines = [
@@ -211,15 +211,13 @@ function StrongLine() {
     <div className="flex h-full w-full items-center justify-center px-5 sm:px-8">
       <StaggeredLines
         lines={[
-          "Stay soft",
-          "Not because it\u2019s a strategy",
-          "Just because it\u2019s you",
+          "Don't be harsh on yourself,",
+          "daffodils don't rush their blooming,",
+          "neither should you.",
         ]}
         stagger={1.6}
-        className={(i) =>
-          i === 0
-            ? "mb-4 font-serif text-4xl leading-[1.6] font-light text-transparent bg-clip-text bg-gradient-to-br from-neutral-100 to-neutral-300 sm:text-6xl md:text-7xl lg:text-8xl"
-            : "font-serif text-2xl leading-[1.6] font-light text-transparent bg-clip-text bg-gradient-to-br from-neutral-400 to-neutral-500 sm:text-4xl md:text-5xl lg:text-6xl"
+        className={() =>
+          "font-serif text-3xl leading-[1.6] font-light text-transparent bg-clip-text bg-gradient-to-br from-neutral-100 to-neutral-300 sm:text-5xl md:text-6xl lg:text-7xl"
         }
       />
     </div>

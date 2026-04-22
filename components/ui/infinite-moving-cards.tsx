@@ -108,7 +108,7 @@ export const InfiniteMovingCards = ({
         dragMomentum={true}
         // dragConstraints bounds us slightly so we don't fling it thousands of pixels past the copies.
         // The useAnimationFrame wrap will handle keeping us within the visual bounds seamlessly.
-        className="flex w-max cursor-grab active:cursor-grabbing items-stretch gap-5 py-4 sm:gap-6"
+        className="flex w-max cursor-grab active:cursor-grabbing items-center gap-5 py-4 sm:gap-6"
       >
         {duplicatedItems.map((item, idx) => {
           // Attach refs to the first item of sequence 1 and sequence 2 for perfect measurement
@@ -120,7 +120,11 @@ export const InfiniteMovingCards = ({
               key={idx}
               ref={isItem1 ? itemRef1 : isItem2 ? itemRef2 : null}
               className={cn(
-                "group relative w-[82vw] max-w-[440px] shrink-0 select-none rounded-[18px] border px-7 py-7 transition-all duration-700 sm:w-[360px] sm:px-9 sm:py-9 md:w-[440px]",
+                "group relative shrink-0 select-none rounded-[18px] border px-7 py-7 transition-all duration-700 sm:px-9 sm:py-9",
+                // Make the card dynamically wider if it contains a lot of text
+                item.quote.length > 180
+                  ? "w-[88vw] max-w-[640px] sm:w-[520px] md:w-[640px]" 
+                  : "w-[82vw] max-w-[440px] sm:w-[360px] md:w-[440px]",
                 "border-white/[0.04] bg-neutral-950/40 backdrop-blur-md",
                 "hover:border-white/[0.08] hover:bg-neutral-900/60 hover:shadow-[0_0_50px_rgba(255,255,255,0.03)]"
               )}
