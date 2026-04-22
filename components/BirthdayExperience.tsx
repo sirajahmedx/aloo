@@ -20,11 +20,10 @@ import FluidCursor from "@/components/FluidCursor";
 
 const testimonials = [
   { quote: "The best word to describe your presence allu is zephyr. A gentle breeze of the morning that makes you feel refreshed.", name: "stella" },
-  { quote: "There\u2019s a stillness in him. Not emptiness. Stillness. Like someone who has felt a lot and chose to carry it quietly.", name: "safa" },
-  { quote: "He\u2019s mature in a way that feels natural, not forced. Knows when to speak, knows when to just be there.", name: "penguin" },
-  { quote: "When he talks about something he cares about, you feel it. He means what he says. Every word comes from somewhere real.", name: "penguin" },
+  { quote: "There\u2019s a stillness in him. Not emptiness. Stillness. Like someone who has felt a lot and chose to carry it quietly.", name: "anonymous" },
+  { quote: "He\u2019s mature in a way that feels natural, not forced. Knows when to speak, knows when to just be there.", name: "anonymous" },
+  { quote: "When he talks about something he cares about, you feel it. He means what he says. Every word comes from somewhere real.", name: "anonymous" },
   { quote: "Aluu the guy who first takes bout the poetry and books the sweetest guy.", name: "ahmed" },
-  { quote: "Happy birthday, aloo. Talking to you just feels easy, like one of those days that’s warm for no reason. You make people feel heard without even trying, and that actually means a lot. I love our deep talks, even when you go way off track. You’ve got a way with words too, so I’m definitely waiting on more of your writing. Hope we stay like this for a long time. ", name: "saif" },
 ];
 
 const heroLines = [
@@ -229,13 +228,12 @@ function StrongLine() {
 function Letter() {
   return (
     <div className="flex h-full w-full items-center justify-center px-4 py-12 sm:px-6">
-      <div className="relative w-full max-w-[680px]">
-        {/* Ambient glow behind the card */}
-        <div className="absolute inset-0 h-full w-full scale-[0.92] transform rounded-full bg-white/[0.025] blur-[80px]" />
+      
+      {/* Invisible outer scrolling wrapper */}
+      <div className="relative flex max-h-[85dvh] w-full max-w-[680px] flex-col gap-10 overflow-y-auto overflow-x-hidden pb-32 pt-10 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
 
-        <div className="relative flex max-h-[82dvh] w-full flex-col items-center overflow-y-auto overflow-x-hidden rounded-[24px] border border-white/[0.06] bg-black/70 px-7 py-14 text-center shadow-[0_0_80px_rgba(255,255,255,0.03)] backdrop-blur-2xl sm:px-16 sm:py-20 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-
-          {/* Greeting */}
+        {/* Global Greeting Header */}
+        <div className="flex flex-col items-center text-center">
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -256,54 +254,90 @@ function Letter() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1.4, delay: 0.7, ease }}
-            className="mb-6 font-serif text-lg font-light text-neutral-400 sm:mb-8 sm:text-2xl"
+            className="font-serif text-lg font-light text-neutral-400 sm:text-2xl"
           >
             Happy Birthday
           </motion.p>
-
+          
           {/* Divider */}
           <motion.div
             initial={{ opacity: 0, scaleX: 0 }}
             animate={{ opacity: 0.5, scaleX: 1 }}
             transition={{ duration: 1.4, delay: 1, ease }}
-            className="mb-8 h-px w-16 shrink-0 bg-gradient-to-r from-transparent via-white/40 to-transparent sm:mb-10"
+            className="mt-10 h-px w-16 shrink-0 bg-gradient-to-r from-transparent via-white/40 to-transparent sm:mt-12"
           />
-
-          {/* Body */}
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 2.0, delay: 1.4, ease }}
-            className="mb-7 flex flex-col gap-4 font-serif text-[15px] font-light leading-[1.8] text-transparent bg-clip-text bg-gradient-to-br from-neutral-300 to-neutral-400 sm:mb-9 sm:gap-5 sm:text-[18px]"
-          >
-            <p>I hope today feels like the first page of something good</p>
-            <p>I hope the people around you actually see you, not just the quiet, but what&apos;s underneath it</p>
-            <p>I hope you keep writing, even when it feels like no one&apos;s reading</p>
-            <p>I hope you keep feeling things fully, even when it&apos;s easier not to</p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 2.0, delay: 3.0, ease }}
-            className="mb-9 flex flex-col gap-3 font-serif text-[14px] font-light leading-[1.8] text-transparent bg-clip-text bg-gradient-to-br from-neutral-400 to-neutral-500 sm:mb-11 sm:gap-4 sm:text-[17px]"
-          >
-            <p>Keep going quiet when you need to.</p>
-            <p>Keep being the person whose silence says something.</p>
-            <p className="mt-2 text-transparent bg-clip-text bg-gradient-to-br from-neutral-200 to-neutral-400">The world needs more of that. More of you.</p>
-          </motion.div>
-
-          {/* Sign-off */}
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 2.0, delay: 5.5, ease }}
-            className="font-sans text-[10px] font-light tracking-[0.3em] text-neutral-600 uppercase sm:text-xs"
-          >
-            with love, from penguin
-          </motion.p>
-
         </div>
+
+        {/* Card 1: Penguin's Letter */}
+        <div className="relative w-full shrink-0">
+          {/* Ambient glow behind the first card */}
+          <div className="absolute inset-0 scale-[0.92] transform rounded-full bg-white/[0.02] blur-[80px]" />
+
+          <div className="relative flex w-full flex-col items-center rounded-[24px] border border-white/[0.06] bg-gradient-to-b from-neutral-800/30 to-neutral-950/50 px-7 py-14 text-center shadow-[0_8px_32px_rgba(0,0,0,0.5)] backdrop-blur-xl sm:px-16 sm:py-20">
+            
+            {/* Body */}
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 2.0, delay: 1.4, ease }}
+              className="mb-7 flex flex-col gap-4 font-serif text-[15px] font-light leading-[1.8] text-transparent bg-clip-text bg-gradient-to-br from-neutral-300 to-neutral-400 sm:mb-9 sm:gap-5 sm:text-[18px]"
+            >
+              <p>I hope today feels like the first page of something good</p>
+              <p>I hope the people around you actually see you, not just the quiet, but what&apos;s underneath it</p>
+              <p>I hope you keep writing, even when it feels like no one&apos;s reading</p>
+              <p>I hope you keep feeling things fully, even when it&apos;s easier not to</p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 2.0, delay: 3.0, ease }}
+              className="mb-9 flex flex-col gap-3 font-serif text-[14px] font-light leading-[1.8] text-transparent bg-clip-text bg-gradient-to-br from-neutral-400 to-neutral-500 sm:mb-11 sm:gap-4 sm:text-[17px]"
+            >
+              <p>Keep going quiet when you need to.</p>
+              <p>Keep being the person whose silence says something.</p>
+              <p className="mt-2 text-transparent bg-clip-text bg-gradient-to-br from-neutral-200 to-neutral-400">The world needs more of that. More of you.</p>
+            </motion.div>
+
+            {/* Sign-off 1 */}
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 2.0, delay: 5.5, ease }}
+              className="font-sans text-[10px] font-light tracking-[0.3em] text-neutral-600 uppercase sm:text-xs"
+            >
+              with love, from penguin
+            </motion.p>
+          </div>
+        </div>
+
+        {/* Card 2: Saif's Letter */}
+        <div className="relative w-full shrink-0">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 2.2, ease }}
+            className="absolute inset-0 scale-[0.92] transform rounded-full bg-white/[0.02] blur-[80px]"
+          />
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{ duration: 2.2, ease }}
+            className="relative flex w-full flex-col items-center rounded-[24px] border border-white/[0.06] bg-gradient-to-b from-neutral-800/30 to-neutral-950/50 px-7 py-14 text-center shadow-[0_8px_32px_rgba(0,0,0,0.5)] backdrop-blur-xl sm:px-16 sm:py-20"
+          >
+            <div className="mb-9 flex flex-col gap-4 font-serif text-[15px] font-light leading-[1.8] text-transparent bg-clip-text bg-gradient-to-br from-neutral-300 to-neutral-400 sm:mb-11 sm:gap-5 sm:text-[18px]">
+              <p>Happy birthday, aloo. Talking to you just feels easy, like one of those days that&apos;s warm for no reason. You make people feel heard without even trying, and that actually means a lot.</p>
+              <p>I love our deep talks, even when you go way off track. You&apos;ve got a way with words too, so I&apos;m definitely waiting on more of your writing. Hope we stay like this for a long time.</p>
+            </div>
+
+            <p className="font-sans text-[10px] font-light tracking-[0.3em] text-neutral-600 uppercase sm:text-xs">
+              from saif
+            </p>
+          </motion.div>
+        </div>
+
       </div>
     </div>
   );
