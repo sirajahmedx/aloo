@@ -31,7 +31,6 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* ── Subtle pulse glow for accents ── */
 @keyframes soft-pulse {
   0%, 100% { opacity: 0.4; }
   50% { opacity: 0.8; }
@@ -41,13 +40,11 @@ body {
   animation: soft-pulse 4s ease-in-out infinite;
 }
 
-/* ── Global selection style ── */
 ::selection {
   background: rgba(184, 155, 94, 0.34);
   color: #2b1d14;
 }
 
-/* Paper grain texture */
 body::before {
   content: "";
   position: fixed;

@@ -1,9 +1,9 @@
-// @ts-nocheck
+
 const useFluidCursor = () => {
   const canvas = document.getElementById("fluid");
   resizeCanvas();
 
-  //try to adjust settings
+
 
   let config = {
     SIM_RESOLUTION: 128,
@@ -1142,7 +1142,7 @@ const useFluidCursor = () => {
     update();
     updatePointerMoveData(pointer, posX, posY, color);
 
-    // Remove this event listener after the first mousemove event
+
     document.body.removeEventListener("mousemove", handleFirstMouseMove);
   });
 
@@ -1169,7 +1169,7 @@ const useFluidCursor = () => {
         updatePointerDownData(pointer, touches[i].identifier, posX, posY);
       }
 
-      // Remove this event listener after the first touchstart event
+
       document.body.removeEventListener("touchstart", handleFirstTouchStart);
     }
   );
@@ -1249,14 +1249,13 @@ const useFluidCursor = () => {
   }
 
   function generateColor() {
-    // Muted dark-academia tones with subtle screenshot-inspired slate/teal hints
     const palette = [
-      { r: 130 / 255, g: 148 / 255, b: 107 / 255 }, // lifted sage
-      { r: 87 / 255, g: 102 / 255, b: 61 / 255 }, // olive
-      { r: 196 / 255, g: 168 / 255, b: 108 / 255 }, // antique gold
-      { r: 187 / 255, g: 150 / 255, b: 113 / 255 }, // warm sepia
-      { r: 63 / 255, g: 89 / 255, b: 88 / 255 }, // muted teal
-      { r: 122 / 255, g: 119 / 255, b: 116 / 255 }, // soft slate
+      { r: 130 / 255, g: 148 / 255, b: 107 / 255 },
+      { r: 87 / 255, g: 102 / 255, b: 61 / 255 },
+      { r: 196 / 255, g: 168 / 255, b: 108 / 255 },
+      { r: 187 / 255, g: 150 / 255, b: 113 / 255 },
+      { r: 63 / 255, g: 89 / 255, b: 88 / 255 },
+      { r: 122 / 255, g: 119 / 255, b: 116 / 255 },
     ];
     return palette[Math.floor(Math.random() * palette.length)];
   }
@@ -1325,7 +1324,7 @@ const useFluidCursor = () => {
     let hash = 0;
     for (let i = 0; i < s.length; i++) {
       hash = (hash << 5) - hash + s.charCodeAt(i);
-      hash |= 0; // Convert to 32bit integer
+      hash |= 0;
     }
     return hash;
   }

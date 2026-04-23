@@ -58,7 +58,7 @@ const FloatingDockMobile = ({
           className={cn(
             "flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/10 transition-all active:scale-90",
             item.active
-              ? "border-[#B89B5E]/50 bg-[#B89B5E]/25 text-[#E8DDC7] shadow-[0_0_20px_rgba(184,155,94,0.22)]"
+              ? "border-[#2f4f4f]/50 bg-[#2f4f4f]/25 text-[#E8DDC7] shadow-[0_0_20px_rgba(47,79,79,0.3)]"
               : "border-[#6E7F5B]/35 bg-[#2B1D14]/70 text-[#C7B89D]"
           )}
         >
@@ -140,9 +140,9 @@ const heightIcon = useTransform(distance, [-150, 0, 150], [14, 26, 14]);
         style={{ width, height }}
         className={cn(
           "relative flex aspect-square items-center justify-center rounded-full border transition-colors",
-          active
-            ? "border-[#B89B5E]/55 bg-[#B89B5E]/25 text-[#E8DDC7] shadow-[0_0_26px_rgba(184,155,94,0.24)]"
-            : "border-[#6E7F5B]/35 bg-[#2B1D14]/72 text-[#D7CAB0] hover:bg-[#6E7F5B]/25 hover:text-[#E8DDC7]"
+            active
+              ? "border-[#2f4f4f]/60 bg-[#2f4f4f]/30 text-[#E8DDC7] shadow-[0_0_26px_rgba(47,79,79,0.35)]"
+              : "border-[#6E7F5B]/35 bg-[#2B1D14]/72 text-[#D7CAB0] hover:bg-[#2f4f4f]/80 hover:text-[#E8DDC7] hover:border-[#2f4f4f]/50 hover:shadow-[0_0_15px_rgba(47,79,79,0.4)]"
         )}
       >
         <AnimatePresence>
@@ -151,7 +151,7 @@ const heightIcon = useTransform(distance, [-150, 0, 150], [14, 26, 14]);
               initial={{ opacity: 0, y: 6, x: "-50%" }}
               animate={{ opacity: 1, y: 0, x: "-50%" }}
               exit={{ opacity: 0, y: 4, x: "-50%" }}
-              className="absolute -top-8 left-1/2 w-fit whitespace-pre rounded-md border border-[#B89B5E]/30 bg-[#2B1D14]/95 px-2 py-0.5 text-xs text-[#E8DDC7]"
+              className="absolute -top-8 left-1/2 w-fit whitespace-pre rounded-md border border-[#2f4f4f]/50 bg-[#2B1D14]/95 px-2 py-0.5 text-xs text-[#E8DDC7] shadow-[0_4px_12px_rgba(47,79,79,0.2)]"
             >
               {title}
             </motion.div>

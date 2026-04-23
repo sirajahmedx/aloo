@@ -26,7 +26,6 @@ export const InfiniteMovingCards = ({
   const [holding, setHolding] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
 
-  // We duplicate items 4 times to ensure seamless wrapping in both directions
   const duplicatedItems = [...items, ...items, ...items, ...items];
 
   const scrollerRef = useRef<HTMLDivElement>(null);
@@ -38,8 +37,6 @@ export const InfiniteMovingCards = ({
   useEffect(() => {
     const measure = () => {
       if (itemRef1.current && itemRef2.current) {
-        // The exact width of one complete sequence is the distance between the
-        // start of the first item in cycle 1 and the first item in cycle 2.
         const width = itemRef2.current.offsetLeft - itemRef1.current.offsetLeft;
         if (width > 0) setCycleWidth(width);
       }
@@ -55,7 +52,6 @@ export const InfiniteMovingCards = ({
   useAnimationFrame((t, delta) => {
     if (!cycleWidth) return;
 
-    // Only auto-scroll if the user isn't interacting
     if (!holding && !(pauseOnHover && isHovering)) {
       const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
       const speeds = {
@@ -70,9 +66,6 @@ export const InfiniteMovingCards = ({
       x.set(x.get() + moveAmount);
     }
 
-    // Flawless wrap logic:
-    // If we scroll too far left (negative x), jump right by cycleWidth
-    // If we scroll too far right (positive x), jump left by cycleWidth
     const currentX = x.get();
     if (currentX <= -cycleWidth) {
       x.set(currentX + cycleWidth);
@@ -106,12 +99,9 @@ export const InfiniteMovingCards = ({
         drag="x"
         dragElastic={0}
         dragMomentum={true}
-        // dragConstraints bounds us slightly so we don't fling it thousands of pixels past the copies.
-        // The useAnimationFrame wrap will handle keeping us within the visual bounds seamlessly.
         className="flex w-max cursor-grab active:cursor-grabbing items-center gap-5 py-4 sm:gap-6"
       >
         {duplicatedItems.map((item, idx) => {
-          // Attach refs to the first item of sequence 1 and sequence 2 for perfect measurement
           const isItem1 = idx === 0;
           const isItem2 = idx === items.length;
           
@@ -121,12 +111,11 @@ export const InfiniteMovingCards = ({
               ref={isItem1 ? itemRef1 : isItem2 ? itemRef2 : null}
               className={cn(
                 "group relative shrink-0 select-none rounded-[18px] border px-7 py-7 transition-all duration-700 sm:px-9 sm:py-9",
-                // Make the card dynamically wider if it contains a lot of text
                 item.quote.length > 180
                   ? "w-[88vw] max-w-[640px] sm:w-[520px] md:w-[640px]" 
                   : "w-[82vw] max-w-[440px] sm:w-[360px] md:w-[440px]",
                 "border-[#B89B5E]/25 bg-gradient-to-br from-[#4A3426]/90 via-[#3A281D]/88 to-[#2B1D14]/95 shadow-[0_10px_26px_rgba(22,14,8,0.45)] backdrop-blur-md",
-                "hover:border-[#2F4F4F]/45 hover:shadow-[0_10px_35px_rgba(47,79,79,0.2)]"
+                "hover:border-[#2F4F4F]/60 hover:shadow-[0_10px_35px_rgba(47,79,79,0.3)]"
               )}
             >
               <blockquote className="flex h-full flex-col justify-between gap-5 pointer-events-none">

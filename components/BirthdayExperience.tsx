@@ -16,7 +16,6 @@ import { SparklesCore } from "@/components/ui/sparkles";
 import { FloatingDock } from "@/components/ui/floating-dock";
 import FluidCursor from "@/components/FluidCursor";
 
-/* ─── Data ─── */
 
 const testimonials = [
   {
@@ -26,8 +25,13 @@ const testimonials = [
   },
   {
     quote:
+      "being around him feels like being heard from the heart. he is sweet in a way that does not try to be, and that is the rarest thing.",
+    name: "siraj",
+  },
+  {
+    quote:
       "If I had to name his presence, I would call it a soft morning breeze. Gentle, calm, and somehow always enough.",
-    name: "stella",
+    name: "safa",
   },
   {
     quote:
@@ -37,10 +41,10 @@ const testimonials = [
 ];
 
 const heroLines = [
-  "Some people only speak to fill silence.",
-  "Some people speak to be heard.",
-  "He speaks to be understood.",
-  "That is where this story begins.",
+  "some people walk in and the air shifts a little.",
+  "you are one of those people.",
+  "happy birthday, alloo.",
+  "we are glad you exist.",
 ];
 
 const letterCards = [
@@ -48,7 +52,7 @@ const letterCards = [
   {
     title: "Saif's Letter",
     preview:
-      "A simple birthday wish, and a memory of how easy it feels to be around you.",
+      "Talking to you feels easy, like one of those days that’s warm for no reason — and it means a lot.",
     meta: "from saif",
     content: [
       "Happy birthday, aloo. Talking to you just feels easy, like one of those days that's warm for no reason. You make people feel heard without even trying, and that actually means a lot.",
@@ -56,14 +60,40 @@ const letterCards = [
     ],
   },
   {
+    title: "Siraj's Letter",
+    preview: "short. but i mean it. you listen from the heart, and people feel it.",
+    meta: "from siraj",
+    content: [
+      "happy birthday, alloo.",
+      "you're one of the kindest people i've come across. and i don't mean that in a general way, i mean the specific kind of kind. your presence just feels like someone is actually listening from the heart. not performing it, just genuinely there. that's not common at all.",
+      "have a good one. you've earned a calm day.",
+      "from siraj aka penguin",
+    ],
+  },
+  {
     title: "Saba's Letter",
     preview:
-      "A warm birthday note filled with love, joy, and admiration for the way you brighten people around you.",
-    meta: "With love, Saba",
+      "happy birthday alloo. you bring love and joy so easily — i hope today brings it back to you.",
+    meta: "from saba",
     content: [
       "‎Happy Birthday Alloo! I hope you have an awesome day today. Cheers to another chapter in your life and also congrats on coming this far. I hope your special day is filled with love and joy just like how you fill everyone else's day with joy and love.",
       "‎Your deep passion for literature, books and wholesome stuff in general really fills me with awe and i just adore how you radiate this warm energy that brighten ups everyone's mood. I love talking to you! So make sure to have fun today and eat a yummy cake to celebrate YOU ❤ 🎂",
-      "- Saba",
+      "from saba",
+    ],
+  },
+  {
+    title: "Ahmed's Letter",
+    preview:
+      "happy birthday alloo. keep smiling, and don’t forget to be the joyous little aluu.",
+    meta: "from ahmed",
+    content: [
+      "Happy Birthday Alloo,",
+      "",
+      "May the upcoming days be just as good and epic as you've made ours. Hope things keep going in a good way for you and you keep doing well in whatever you’re doing.",
+      "",
+      "Keep smiling and be happy and don't forget to be the joyous little aluu.",
+      "",
+      "from ahmed",
     ],
   },
 ];
@@ -154,11 +184,11 @@ function Opening() {
     <div className="flex h-full w-full flex-col items-center justify-center px-6 sm:px-10">
       <StaggeredLines
         lines={[
-          "This is for one of the sweetest people I have ever met,",
-          "and yes, for someone who somehow loves books this much.",
-          "So naturally, the story starts there.",
-          "But it was never only about books.",
-          "It was always about the heart of the person reading them.",
+          "This is for the sweetest person I’ve ever met, and somehow, also the one most obsessed with books.",
+          "People describe your presence like it is weather.",
+          "Like a breeze. Like something soft that makes the morning feel easier.",
+          "That is the first thing you do. You make things feel light.",
+          "And then you do the second thing. You make people feel heard.",
         ]}
         stagger={1.2}
         className={(i) =>
@@ -194,7 +224,7 @@ function Hero() {
         className="mt-5 flex w-full max-w-6xl flex-col items-center sm:mt-7"
       >
         <p className="mb-4 text-center font-serif text-xl font-semibold tracking-[0.02em] text-[#2B1D14] sm:mb-5 sm:text-2xl">
-          voices from the same story
+          what people gently say about you
         </p>
         <div className="h-px w-28 bg-gradient-to-r from-transparent via-[#2F4F4F]/50 to-transparent sm:w-36" />
         <InfiniteMovingCards items={testimonials} direction="right" speed="normal" />
@@ -207,35 +237,29 @@ function Hero() {
 
 function Transition() {
   return (
-    <div className="flex h-full w-full flex-col items-center justify-center gap-10 px-5 sm:gap-14 sm:px-8">
+    <div className="flex h-full w-full flex-col items-center justify-center px-5 sm:px-8">
       <StaggeredLines
         lines={[
-          "Today, it is only about you.",
-          "Not what you write. Not what you read.",
-          "Just you, as you are.",
+          "Put the books down for today.",
+          "no poetry, no pages.",
+          "just you.",
+          "there is a kind of kindness that does not announce itself.",
+          "it just sits with you until you feel it.",
+          "you have that.",
+          "your words land somewhere quiet and real.",
+          "your presence makes people feel less alone without trying.",
+          "that is yours. and it is rare.",
         ]}
-        stagger={1.8}
+        stagger={1.25}
         start={0}
         className={(i) =>
           i === 0
             ? "font-serif text-2xl leading-[1.66] font-semibold tracking-[0.01em] text-transparent bg-clip-text bg-gradient-to-br from-[#2B1D14] to-[#4A3426] sm:text-4xl md:text-5xl lg:text-6xl"
-            : "font-sans text-lg leading-[1.85] font-normal tracking-[0.005em] text-[#5A4637] sm:text-2xl md:text-3xl lg:text-4xl"
-        }
-      />
-      <StaggeredLines
-        lines={[
-          "You are one of those people who makes everything feel lighter.",
-          "Being around you feels easy, in the best way.",
-          "That is a rare thing to find.",
-        ]}
-        stagger={1.6}
-        start={6.4}
-        className={(i) =>
-          i === 0
-            ? "font-sans text-lg leading-[1.88] font-normal tracking-[0.004em] text-[#5A4534] sm:text-2xl md:text-3xl max-w-[min(640px,88vw)]"
-            : i === 2
-              ? "font-serif text-lg leading-[1.76] font-semibold italic tracking-[0.008em] text-transparent bg-clip-text bg-gradient-to-br from-[#2B1D14] to-[#4A3426] sm:text-2xl md:text-3xl"
-              : "font-sans text-base leading-[1.84] font-normal tracking-[0.004em] text-[#6B5643] sm:text-xl md:text-2xl"
+            : i === 1 || i === 2
+              ? "font-sans text-lg leading-[1.85] font-normal tracking-[0.005em] text-[#5A4637] sm:text-2xl md:text-3xl lg:text-4xl"
+              : i === 5 || i === 8
+                ? "font-serif text-lg leading-[1.75] font-semibold italic tracking-[0.008em] text-transparent bg-clip-text bg-gradient-to-br from-[#2B1D14] to-[#4A3426] sm:text-2xl md:text-3xl"
+                : "font-sans text-base leading-[1.9] font-normal tracking-[0.004em] text-[#6B5643] sm:text-xl md:text-2xl max-w-[min(780px,92vw)]"
         }
       />
     </div>
@@ -251,7 +275,7 @@ function StrongLine() {
         lines={[
           "Do not be harsh on yourself,",
           "daffodils do not rush their blooming,",
-          "and neither should you.",
+          "and neither should you -safa",
         ]}
         stagger={1.6}
         className={() =>
@@ -286,7 +310,7 @@ function Letter() {
             transition={{ duration: 1.4, ease }}
             className="mb-3 font-sans text-[11px] font-light tracking-[0.3em] text-[#6E7F5B] uppercase sm:text-xs"
           >
-            for Mustafa &mdash; or as I call him,
+            for Mustafa or as we call him,
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 12, filter: "blur(10px)" }}
