@@ -9,7 +9,7 @@ const FluidCursor = () => {
   }, []);
 
   return (
-    <div className="pointer-events-none fixed inset-0 z-0 opacity-30 mix-blend-screen">
+    <div className="pointer-events-none fixed inset-0 z-0 opacity-[0.52] mix-blend-soft-light">
       <canvas id="fluid" className="h-screen w-screen" />
     </div>
   );

@@ -1,8 +1,13 @@
 @import "tailwindcss";
 
 :root {
-  --background: #000000;
-  --foreground: #ededed;
+  --background: #e8ddc7;
+  --foreground: #2b1d14;
+  --surface: #4a3426;
+  --surface-soft: #3a281d;
+  --accent-sage: #6e7f5b;
+  --accent-olive: #3f4a2b;
+  --accent-gold: #b89b5e;
 }
 
 @theme inline {
@@ -14,12 +19,16 @@
 }
 
 body {
-  background: var(--background);
+  background:
+    radial-gradient(circle at 20% 15%, rgba(184, 155, 94, 0.16), transparent 45%),
+    radial-gradient(circle at 80% 80%, rgba(110, 127, 91, 0.1), transparent 36%),
+    var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow: hidden;
+  text-rendering: optimizeLegibility;
 }
 
 /* ── Subtle pulse glow for accents ── */
@@ -34,6 +43,20 @@ body {
 
 /* ── Global selection style ── */
 ::selection {
-  background: rgba(255, 255, 255, 0.12);
-  color: #fff;
+  background: rgba(184, 155, 94, 0.34);
+  color: #2b1d14;
+}
+
+/* Paper grain texture */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0.08;
+  background-image:
+    radial-gradient(circle at 10% 20%, rgba(232, 221, 199, 0.9) 0.3px, transparent 0.8px),
+    radial-gradient(circle at 70% 60%, rgba(232, 221, 199, 0.55) 0.2px, transparent 0.9px);
+  background-size: 3px 3px, 4px 4px;
 }

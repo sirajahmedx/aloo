@@ -96,7 +96,7 @@ export const InfiniteMovingCards = ({
       onTouchCancel={() => setHolding(false)}
       className={cn(
         "relative z-20 w-full max-w-7xl overflow-hidden touch-none",
-        "[mask-image:linear-gradient(to_right,transparent,white_5%,white_95%,transparent)]",
+        "[mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)]",
         className
       )}
     >
@@ -125,21 +125,21 @@ export const InfiniteMovingCards = ({
                 item.quote.length > 180
                   ? "w-[88vw] max-w-[640px] sm:w-[520px] md:w-[640px]" 
                   : "w-[82vw] max-w-[440px] sm:w-[360px] md:w-[440px]",
-                "border-white/[0.04] bg-neutral-950/40 backdrop-blur-md",
-                "hover:border-white/[0.08] hover:bg-neutral-900/60 hover:shadow-[0_0_50px_rgba(255,255,255,0.03)]"
+                "border-[#B89B5E]/25 bg-gradient-to-br from-[#4A3426]/90 via-[#3A281D]/88 to-[#2B1D14]/95 shadow-[0_10px_26px_rgba(22,14,8,0.45)] backdrop-blur-md",
+                "hover:border-[#B89B5E]/40 hover:shadow-[0_10px_35px_rgba(184,155,94,0.18)]"
               )}
             >
               <blockquote className="flex h-full flex-col justify-between gap-5 pointer-events-none">
-                <span className="relative z-20 block font-serif text-[15px] font-light leading-[1.85] tracking-[0.015em] text-transparent bg-clip-text bg-gradient-to-br from-neutral-200 to-neutral-500 transition-colors duration-700 group-hover:from-neutral-100 group-hover:to-neutral-300 sm:text-[17px]">
+                <span className="relative z-20 block font-serif text-[15px] font-light leading-[1.85] tracking-[0.015em] text-transparent bg-clip-text bg-gradient-to-br from-[#E8DDC7] to-[#B9A78A] transition-colors duration-700 group-hover:from-[#F1E8D6] group-hover:to-[#D3BF9A] sm:text-[17px]">
                   &ldquo;{item.quote}&rdquo;
                 </span>
                 {item.name && (
-                  <footer className="mt-auto flex flex-col gap-1 border-t border-white/[0.04] pt-4">
-                    <span className="font-serif text-[14px] font-normal tracking-[0.03em] text-neutral-300 sm:text-[15px]">
+                  <footer className="mt-auto flex flex-col gap-1 border-t border-[#B89B5E]/20 pt-4">
+                    <span className="font-serif text-[14px] font-semibold tracking-[0.03em] text-[#D8CAAD] sm:text-[15px]">
                       {item.name}
                     </span>
                     {item.title && (
-                      <span className="font-sans text-[11px] font-light tracking-[0.06em] text-neutral-500 uppercase sm:text-[12px]">
+                      <span className="font-sans text-[11px] font-light tracking-[0.06em] text-[#9CAD8A] uppercase sm:text-[12px]">
                         {item.title}
                       </span>
                     )}

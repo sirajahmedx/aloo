@@ -33,6 +33,34 @@ const heroLines = [
   "There\u2019s a difference.",
 ];
 
+const letterCards = [
+  {
+    title: "Penguin's Letter",
+    preview:
+      "I hope today feels like the first page of something good. I hope the people around you actually see you, not just the quiet, but what's underneath it.",
+    meta: "With love, from Penguin",
+    content: [
+      "I hope today feels like the first page of something good",
+      "I hope the people around you actually see you, not just the quiet, but what's underneath it",
+      "I hope you keep writing, even when it feels like no one's reading",
+      "I hope you keep feeling things fully, even when it's easier not to",
+      "Keep going quiet when you need to.",
+      "Keep being the person whose silence says something.",
+      "The world needs more of that. More of you.",
+    ],
+  },
+  {
+    title: "Saif's Letter",
+    preview:
+      "Talking to you feels easy, like a warm day for no reason. You make people feel heard without trying, and that means more than you think.",
+    meta: "From Saif",
+    content: [
+      "Happy birthday, aloo. Talking to you just feels easy, like one of those days that's warm for no reason. You make people feel heard without even trying, and that actually means a lot.",
+      "I love our deep talks, even when you go way off track. You've got a way with words too, so I'm definitely waiting on more of your writing. Hope we stay like this for a long time.",
+    ],
+  },
+];
+
 const scenes = [
   { id: "opening", duration: 14700, label: "Opening" },
   { id: "hero", duration: 90000, label: "Quiet Voices" },
@@ -53,31 +81,31 @@ const sceneIcons: Record<string, React.ReactNode> = {
 
 /* ─── Animation constants ─── */
 
-const ease = [0.16, 1, 0.3, 1] as const;          // slightly snappier entry, buttery decay
-const fadeTransition = { duration: 1.8, ease };     // scene cross-fade
+const ease = [0.22, 1, 0.36, 1] as const;
+const fadeTransition = { duration: 2.1, ease };
 
 /* ─── Backgrounds ─── */
 
 function GridBackground() {
   return (
-    <div className="pointer-events-none fixed inset-0 -z-10 bg-black">
+    <div className="pointer-events-none fixed inset-0 -z-10 bg-[#E8DDC7]">
       <div
-        className="absolute inset-0 opacity-[0.35]"
+        className="absolute inset-0 opacity-[0.32]"
         style={{
           backgroundImage:
-            "linear-gradient(to right, #1a1a1a 1px, transparent 1px), linear-gradient(to bottom, #1a1a1a 1px, transparent 1px)",
-          backgroundSize: "48px 48px",
+            "linear-gradient(to right, rgba(74,52,38,0.13) 1px, transparent 1px), linear-gradient(to bottom, rgba(74,52,38,0.13) 1px, transparent 1px)",
+          backgroundSize: "52px 52px",
         }}
       />
       <div
-        className="absolute inset-0 bg-black"
+        className="absolute inset-0 bg-[#E8DDC7]"
         style={{
           maskImage: "radial-gradient(ellipse at center, transparent 0%, black 68%)",
           WebkitMaskImage: "radial-gradient(ellipse at center, transparent 0%, black 68%)",
         }}
       />
-      {/* Subtle warm ambient glow */}
-      <div className="absolute left-1/2 top-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/[0.015] blur-[120px]" />
+      <div className="absolute left-1/2 top-1/2 h-[620px] w-[620px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#B89B5E]/18 blur-[130px]" />
+      <div className="absolute right-8 top-20 h-[340px] w-[340px] rounded-full bg-[#6E7F5B]/16 blur-[120px]" />
     </div>
   );
 }
@@ -96,7 +124,7 @@ function StaggeredLines({
   start?: number;
 }) {
   return (
-    <div className="flex max-h-[85dvh] w-full flex-col items-center gap-5 overflow-y-auto px-6 py-8 text-center sm:gap-7 sm:px-10 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+    <div className="flex max-h-[85dvh] w-full flex-col items-center gap-6 overflow-y-auto px-6 py-8 text-center sm:gap-8 sm:px-10 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
       {lines.map((line, i) => (
         <motion.p
           key={i}
@@ -128,8 +156,8 @@ function Opening() {
         stagger={1.2}
         className={(i) =>
           i === 0
-            ? "font-serif text-lg leading-[1.6] text-transparent bg-clip-text bg-gradient-to-br from-neutral-100 to-neutral-300 sm:text-2xl md:text-3xl lg:text-4xl max-w-[min(640px,88vw)]"
-            : "font-serif text-base leading-[1.6] text-transparent bg-clip-text bg-gradient-to-br from-neutral-400 to-neutral-500 sm:text-lg md:text-xl lg:text-2xl max-w-[min(560px,86vw)]"
+            ? "font-serif text-lg leading-[1.68] font-semibold tracking-[0.01em] text-transparent bg-clip-text bg-gradient-to-br from-[#2B1D14] to-[#4A3426] sm:text-2xl md:text-3xl lg:text-4xl max-w-[min(640px,88vw)]"
+            : "font-serif text-base leading-[1.75] tracking-[0.004em] text-transparent bg-clip-text bg-gradient-to-br from-[#4A3426] to-[#6B5645] sm:text-lg md:text-xl lg:text-2xl max-w-[min(560px,86vw)]"
         }
       />
     </div>
@@ -146,10 +174,10 @@ function Hero() {
         stagger={1.3}
         className={(i) =>
           i === 0 || i === 1
-            ? "font-serif text-base leading-[1.6] font-light text-transparent bg-clip-text bg-gradient-to-br from-neutral-400 to-neutral-500 sm:text-xl md:text-2xl lg:text-3xl"
+            ? "font-serif text-base leading-[1.75] font-light tracking-[0.004em] text-transparent bg-clip-text bg-gradient-to-br from-[#5A4534] to-[#7A654F] sm:text-xl md:text-2xl lg:text-3xl"
             : i === 2
-              ? "font-serif text-xl leading-[1.6] font-light text-transparent bg-clip-text bg-gradient-to-br from-neutral-100 to-neutral-300 sm:text-3xl md:text-4xl lg:text-5xl"
-              : "font-serif text-sm leading-[1.6] font-light italic text-transparent bg-clip-text bg-gradient-to-br from-neutral-500 to-neutral-600 sm:text-lg md:text-xl"
+              ? "font-serif text-xl leading-[1.72] font-semibold tracking-[0.01em] text-transparent bg-clip-text bg-gradient-to-br from-[#2B1D14] to-[#4A3426] sm:text-3xl md:text-4xl lg:text-5xl"
+              : "font-serif text-sm leading-[1.76] font-light italic tracking-[0.006em] text-transparent bg-clip-text bg-gradient-to-br from-[#6E7F5B] to-[#4E5C3D] sm:text-lg md:text-xl"
         }
       />
       <motion.div
@@ -179,8 +207,8 @@ function Transition() {
         start={0}
         className={(i) =>
           i === 0
-            ? "font-serif text-2xl leading-[1.6] font-light text-transparent bg-clip-text bg-gradient-to-br from-neutral-100 to-neutral-300 sm:text-4xl md:text-5xl lg:text-6xl"
-            : "font-serif text-lg leading-[1.6] font-light text-transparent bg-clip-text bg-gradient-to-br from-neutral-400 to-neutral-500 sm:text-2xl md:text-3xl lg:text-4xl"
+            ? "font-serif text-2xl leading-[1.66] font-semibold tracking-[0.01em] text-transparent bg-clip-text bg-gradient-to-br from-[#2B1D14] to-[#4A3426] sm:text-4xl md:text-5xl lg:text-6xl"
+            : "font-serif text-lg leading-[1.72] font-light tracking-[0.005em] text-transparent bg-clip-text bg-gradient-to-br from-[#4A3426] to-[#6E7F5B] sm:text-2xl md:text-3xl lg:text-4xl"
         }
       />
       <StaggeredLines
@@ -193,10 +221,10 @@ function Transition() {
         start={8.0}
         className={(i) =>
           i === 0
-            ? "font-serif text-lg leading-[1.6] font-light text-transparent bg-clip-text bg-gradient-to-br from-neutral-300 to-neutral-400 sm:text-2xl md:text-3xl max-w-[min(640px,88vw)]"
+            ? "font-serif text-lg leading-[1.76] font-light tracking-[0.004em] text-transparent bg-clip-text bg-gradient-to-br from-[#4A3426] to-[#7A6550] sm:text-2xl md:text-3xl max-w-[min(640px,88vw)]"
             : i === 2
-              ? "font-serif text-lg leading-[1.6] font-light italic text-transparent bg-clip-text bg-gradient-to-br from-neutral-100 to-neutral-300 sm:text-2xl md:text-3xl"
-              : "font-serif text-base leading-[1.6] font-light text-transparent bg-clip-text bg-gradient-to-br from-neutral-400 to-neutral-500 sm:text-xl md:text-2xl"
+              ? "font-serif text-lg leading-[1.76] font-semibold italic tracking-[0.008em] text-transparent bg-clip-text bg-gradient-to-br from-[#2B1D14] to-[#4A3426] sm:text-2xl md:text-3xl"
+              : "font-serif text-base leading-[1.75] font-light tracking-[0.004em] text-transparent bg-clip-text bg-gradient-to-br from-[#6B5643] to-[#6E7F5B] sm:text-xl md:text-2xl"
         }
       />
     </div>
@@ -216,7 +244,7 @@ function StrongLine() {
         ]}
         stagger={1.6}
         className={() =>
-          "font-serif text-3xl leading-[1.6] font-light text-transparent bg-clip-text bg-gradient-to-br from-neutral-100 to-neutral-300 sm:text-5xl md:text-6xl lg:text-7xl"
+          "font-serif text-3xl leading-[1.7] font-semibold tracking-[0.01em] text-transparent bg-clip-text bg-gradient-to-br from-[#2B1D14] to-[#4A3426] sm:text-5xl md:text-6xl lg:text-7xl"
         }
       />
     </div>
@@ -226,118 +254,137 @@ function StrongLine() {
 /* ─── Scene: Letter ─── */
 
 function Letter() {
-  return (
-    <div className="flex h-full w-full items-center justify-center px-4 py-12 sm:px-6">
-      
-      {/* Invisible outer scrolling wrapper */}
-      <div className="relative flex max-h-[85dvh] w-full max-w-[680px] flex-col gap-10 overflow-y-auto overflow-x-hidden pb-32 pt-10 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+  const [selectedLetter, setSelectedLetter] = useState<(typeof letterCards)[number] | null>(null);
 
-        {/* Global Greeting Header */}
-        <div className="flex flex-col items-center text-center">
+  useEffect(() => {
+    if (!selectedLetter) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setSelectedLetter(null);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [selectedLetter]);
+
+  return (
+    <div className="flex h-full w-full items-center justify-center px-0 py-10 sm:px-2">
+      <div className="w-full max-w-[1240px]">
+        <div className="mb-8 flex flex-col items-center px-5 text-center sm:mb-12">
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 1.8, delay: 0, ease }}
-            className="mb-3 font-sans text-[11px] font-light tracking-[0.3em] text-neutral-500 uppercase sm:text-xs"
+            transition={{ duration: 1.4, ease }}
+            className="mb-3 font-sans text-[11px] font-light tracking-[0.3em] text-[#6E7F5B] uppercase sm:text-xs"
           >
             for Mustafa &mdash; or as I call him,
           </motion.p>
           <motion.h2
             initial={{ opacity: 0, y: 12, filter: "blur(10px)" }}
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            transition={{ duration: 2.0, delay: 0.4, ease }}
-            className="mb-1 font-serif text-5xl font-light tracking-wide text-transparent bg-clip-text bg-gradient-to-br from-neutral-100 to-neutral-300 sm:text-7xl"
+            transition={{ duration: 1.9, delay: 0.2, ease }}
+            className="mb-2 font-serif text-5xl font-semibold tracking-[0.04em] text-transparent bg-clip-text bg-gradient-to-br from-[#2B1D14] to-[#4A3426] sm:text-7xl"
           >
             alooo
           </motion.h2>
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 1.4, delay: 0.7, ease }}
-            className="font-serif text-lg font-light text-neutral-400 sm:text-2xl"
+            transition={{ duration: 1.2, delay: 0.45, ease }}
+            className="font-serif text-lg text-[#4A3426] sm:text-2xl"
           >
             Happy Birthday
           </motion.p>
-          
-          {/* Divider */}
-          <motion.div
-            initial={{ opacity: 0, scaleX: 0 }}
-            animate={{ opacity: 0.5, scaleX: 1 }}
-            transition={{ duration: 1.4, delay: 1, ease }}
-            className="mt-10 h-px w-16 shrink-0 bg-gradient-to-r from-transparent via-white/40 to-transparent sm:mt-12"
-          />
         </div>
 
-        {/* Card 1: Penguin's Letter */}
-        <div className="relative w-full shrink-0">
-          {/* Ambient glow behind the first card */}
-          <div className="absolute inset-0 scale-[0.92] transform rounded-full bg-white/[0.02] blur-[80px]" />
+        <motion.div
+          initial={{ opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.7, delay: 0.55, ease }}
+          className="relative"
+        >
+          <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-[#E8DDC7] to-transparent sm:w-20" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-[#E8DDC7] to-transparent sm:w-20" />
 
-          <div className="relative flex w-full flex-col items-center rounded-[24px] border border-white/[0.06] bg-gradient-to-b from-neutral-800/30 to-neutral-950/50 px-7 py-14 text-center shadow-[0_8px_32px_rgba(0,0,0,0.5)] backdrop-blur-xl sm:px-16 sm:py-20">
-            
-            {/* Body */}
+          <div className="flex snap-x snap-mandatory gap-5 overflow-x-auto px-5 pb-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:gap-7 sm:px-10">
+            {[...letterCards, ...letterCards].map((card, i) => (
+              <motion.button
+                key={`${card.title}-${i}`}
+                whileHover={{ y: -4, scale: 1.01 }}
+                whileTap={{ scale: 0.99 }}
+                transition={{ duration: 0.45, ease }}
+                onClick={() => setSelectedLetter(card)}
+                className="group relative min-h-[280px] w-[84vw] max-w-[430px] snap-center shrink-0 rounded-[24px] border border-[#B89B5E]/35 bg-gradient-to-br from-[#4A3426] via-[#3B2A1F] to-[#2B1D14] p-7 text-left text-[#E8DDC7] shadow-[0_14px_30px_rgba(25,16,9,0.35)] outline-none transition-shadow duration-500 hover:shadow-[0_18px_38px_rgba(25,16,9,0.45),0_0_22px_rgba(63,89,88,0.16)] focus-visible:ring-2 focus-visible:ring-[#7A8D87]/70 sm:min-h-[320px] sm:p-9"
+                type="button"
+              >
+                <div
+                  className="pointer-events-none absolute inset-0 rounded-[24px] opacity-[0.2]"
+                  style={{
+                    backgroundImage:
+                      "radial-gradient(circle at 20% 20%, rgba(232,221,199,0.2) 0.3px, transparent 0.8px)",
+                    backgroundSize: "4px 4px",
+                  }}
+                />
+                <div className="relative flex h-full flex-col">
+                  <p className="mb-3 font-sans text-[11px] tracking-[0.22em] text-[#9CAD8A] uppercase">
+                    Letter {i + 1}
+                  </p>
+                  <h3 className="mb-3 font-serif text-2xl font-semibold tracking-[0.01em] text-[#F0E6D2] sm:text-3xl">
+                    {card.title}
+                  </h3>
+                  <p className="line-clamp-5 font-serif text-[17px] leading-[1.78] text-[#D9CCB2] sm:text-[18px]">
+                    {card.preview}
+                  </p>
+                  <p className="mt-auto border-t border-[#B89B5E]/30 pt-4 font-sans text-[11px] tracking-[0.2em] text-[#B89B5E] uppercase">
+                    {card.meta}
+                  </p>
+                </div>
+              </motion.button>
+            ))}
+          </div>
+        </motion.div>
+
+        <AnimatePresence>
+          {selectedLetter && (
             <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 2.0, delay: 1.4, ease }}
-              className="mb-7 flex flex-col gap-4 font-serif text-[15px] font-light leading-[1.8] text-transparent bg-clip-text bg-gradient-to-br from-neutral-300 to-neutral-400 sm:mb-9 sm:gap-5 sm:text-[18px]"
-            >
-              <p>I hope today feels like the first page of something good</p>
-              <p>I hope the people around you actually see you, not just the quiet, but what&apos;s underneath it</p>
-              <p>I hope you keep writing, even when it feels like no one&apos;s reading</p>
-              <p>I hope you keep feeling things fully, even when it&apos;s easier not to</p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 2.0, delay: 3.0, ease }}
-              className="mb-9 flex flex-col gap-3 font-serif text-[14px] font-light leading-[1.8] text-transparent bg-clip-text bg-gradient-to-br from-neutral-400 to-neutral-500 sm:mb-11 sm:gap-4 sm:text-[17px]"
-            >
-              <p>Keep going quiet when you need to.</p>
-              <p>Keep being the person whose silence says something.</p>
-              <p className="mt-2 text-transparent bg-clip-text bg-gradient-to-br from-neutral-200 to-neutral-400">The world needs more of that. More of you.</p>
-            </motion.div>
-
-            {/* Sign-off 1 */}
-            <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ duration: 2.0, delay: 5.5, ease }}
-              className="font-sans text-[10px] font-light tracking-[0.3em] text-neutral-600 uppercase sm:text-xs"
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.42, ease }}
+              className="fixed inset-0 z-[70] flex items-center justify-center bg-[#2B1D14]/55 px-4 backdrop-blur-sm"
+              onClick={() => setSelectedLetter(null)}
             >
-              with love, from penguin
-            </motion.p>
-          </div>
-        </div>
-
-        {/* Card 2: Saif's Letter */}
-        <div className="relative w-full shrink-0">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 2.2, ease }}
-            className="absolute inset-0 scale-[0.92] transform rounded-full bg-white/[0.02] blur-[80px]"
-          />
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ duration: 2.2, ease }}
-            className="relative flex w-full flex-col items-center rounded-[24px] border border-white/[0.06] bg-gradient-to-b from-neutral-800/30 to-neutral-950/50 px-7 py-14 text-center shadow-[0_8px_32px_rgba(0,0,0,0.5)] backdrop-blur-xl sm:px-16 sm:py-20"
-          >
-            <div className="mb-9 flex flex-col gap-4 font-serif text-[15px] font-light leading-[1.8] text-transparent bg-clip-text bg-gradient-to-br from-neutral-300 to-neutral-400 sm:mb-11 sm:gap-5 sm:text-[18px]">
-              <p>Happy birthday, aloo. Talking to you just feels easy, like one of those days that&apos;s warm for no reason. You make people feel heard without even trying, and that actually means a lot.</p>
-              <p>I love our deep talks, even when you go way off track. You&apos;ve got a way with words too, so I&apos;m definitely waiting on more of your writing. Hope we stay like this for a long time.</p>
-            </div>
-
-            <p className="font-sans text-[10px] font-light tracking-[0.3em] text-neutral-600 uppercase sm:text-xs">
-              from saif
-            </p>
-          </motion.div>
-        </div>
-
+              <motion.article
+                initial={{ opacity: 0, y: 18, scale: 0.97 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 14, scale: 0.98 }}
+                transition={{ duration: 0.52, ease }}
+                onClick={(e) => e.stopPropagation()}
+                className="relative max-h-[84dvh] w-full max-w-2xl overflow-y-auto rounded-[28px] border border-[#B89B5E]/35 bg-gradient-to-br from-[#F0E6D2] via-[#E8DDC7] to-[#E2D4B8] p-6 shadow-[0_28px_60px_rgba(22,14,8,0.35)] sm:p-9"
+              >
+                <button
+                  type="button"
+                  onClick={() => setSelectedLetter(null)}
+                  className="absolute right-4 top-4 rounded-full border border-[#4A3426]/20 bg-[#E8DDC7] px-3 py-1 font-sans text-xs tracking-[0.12em] text-[#4A3426] uppercase transition-colors hover:bg-[#DFD0B1]"
+                >
+                  Close
+                </button>
+                <p className="mb-2 font-sans text-[11px] tracking-[0.2em] text-[#6E7F5B] uppercase">
+                  Letter
+                </p>
+                <h3 className="mb-2 pr-16 font-serif text-3xl font-semibold tracking-[0.01em] text-[#2B1D14] sm:text-4xl">
+                  {selectedLetter.title}
+                </h3>
+                <p className="mb-6 border-b border-[#4A3426]/16 pb-4 font-sans text-[11px] tracking-[0.2em] text-[#7D6750] uppercase">
+                  {selectedLetter.meta}
+                </p>
+                <div className="space-y-4 font-serif text-[18px] leading-[1.85] tracking-[0.002em] text-[#3B2A1F]">
+                  {selectedLetter.content.map((line, lineIndex) => (
+                    <p key={`${selectedLetter.title}-line-${lineIndex}`}>{line}</p>
+                  ))}
+                </div>
+              </motion.article>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </div>
   );
@@ -347,12 +394,12 @@ function Letter() {
 
 function Closing() {
   return (
-    <div className="relative flex h-full w-full flex-col items-center justify-center overflow-hidden bg-black px-5">
+    <div className="relative flex h-full w-full flex-col items-center justify-center overflow-hidden bg-[#E8DDC7] px-5">
       <motion.h1
         initial={{ opacity: 0, y: 16, filter: "blur(10px)" }}
         animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
         transition={{ duration: 2.4, ease }}
-        className="relative z-20 max-w-[min(640px,92vw)] text-center font-serif text-4xl font-light leading-snug text-transparent bg-clip-text bg-gradient-to-br from-neutral-100 to-neutral-300 sm:text-6xl md:text-7xl lg:text-8xl"
+        className="relative z-20 max-w-[min(640px,92vw)] text-center font-serif text-4xl font-semibold leading-[1.18] tracking-[0.012em] text-transparent bg-clip-text bg-gradient-to-br from-[#2B1D14] to-[#4A3426] sm:text-6xl md:text-7xl lg:text-8xl"
       >
         You are quietly extraordinary.
       </motion.h1>
@@ -360,27 +407,27 @@ function Closing() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 2, delay: 1.6, ease }}
-        className="relative z-20 mt-6 max-w-[90vw] text-center font-serif text-lg font-light tracking-wide text-transparent bg-clip-text bg-gradient-to-br from-neutral-400 to-neutral-500 sm:mt-8 sm:text-2xl"
+        className="relative z-20 mt-6 max-w-[90vw] text-center font-serif text-lg font-light leading-[1.75] tracking-[0.01em] text-transparent bg-clip-text bg-gradient-to-br from-[#4A3426] to-[#6E7F5B] sm:mt-8 sm:text-2xl"
       >
         and the world is softer because you&apos;re in it.
       </motion.p>
 
       {/* Sparkle strip */}
       <div className="relative mt-4 h-32 w-full max-w-[40rem] sm:h-40">
-        <div className="absolute inset-x-10 top-0 h-[2px] w-3/4 bg-gradient-to-r from-transparent via-indigo-500/70 to-transparent blur-sm sm:inset-x-20" />
-        <div className="absolute inset-x-10 top-0 h-px w-3/4 bg-gradient-to-r from-transparent via-indigo-500/50 to-transparent sm:inset-x-20" />
-        <div className="absolute inset-x-32 top-0 h-[5px] w-1/4 bg-gradient-to-r from-transparent via-sky-500/60 to-transparent blur-sm sm:inset-x-60" />
-        <div className="absolute inset-x-32 top-0 h-px w-1/4 bg-gradient-to-r from-transparent via-sky-500/40 to-transparent sm:inset-x-60" />
+        <div className="absolute inset-x-10 top-0 h-[2px] w-3/4 bg-gradient-to-r from-transparent via-[#B89B5E]/70 to-transparent blur-sm sm:inset-x-20" />
+        <div className="absolute inset-x-10 top-0 h-px w-3/4 bg-gradient-to-r from-transparent via-[#B89B5E]/50 to-transparent sm:inset-x-20" />
+        <div className="absolute inset-x-32 top-0 h-[5px] w-1/4 bg-gradient-to-r from-transparent via-[#6E7F5B]/60 to-transparent blur-sm sm:inset-x-60" />
+        <div className="absolute inset-x-32 top-0 h-px w-1/4 bg-gradient-to-r from-transparent via-[#6E7F5B]/45 to-transparent sm:inset-x-60" />
         <SparklesCore
           background="transparent"
           minSize={0.3}
           maxSize={0.9}
           particleDensity={350}
           className="h-full w-full"
-          particleColor="#FFFFFF"
+          particleColor="#E8DDC7"
         />
         <div
-          className="absolute inset-0 h-full w-full bg-black"
+          className="absolute inset-0 h-full w-full bg-[#E8DDC7]"
           style={{
             maskImage: "radial-gradient(350px 200px at top, transparent 20%, black)",
             WebkitMaskImage: "radial-gradient(350px 200px at top, transparent 20%, black)",
@@ -428,7 +475,7 @@ export function BirthdayExperience() {
   }));
 
   return (
-    <main className="fixed inset-0 h-[100dvh] w-screen overflow-hidden bg-black">
+    <main className="fixed inset-0 h-[100dvh] w-screen overflow-hidden bg-[#E8DDC7]">
       <GridBackground />
       <FluidCursor />
 

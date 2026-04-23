@@ -9,15 +9,15 @@ const useFluidCursor = () => {
     SIM_RESOLUTION: 128,
     DYE_RESOLUTION: 1024,
     CAPTURE_RESOLUTION: 512,
-    DENSITY_DISSIPATION: 1.5,
-    VELOCITY_DISSIPATION: 4,
+    DENSITY_DISSIPATION: 1.38,
+    VELOCITY_DISSIPATION: 3.7,
     PRESSURE: 0.05,
     PRESSURE_ITERATIONS: 20,
     CURL: 1,
-    SPLAT_RADIUS: 0.12,
-    SPLAT_FORCE: 3000,
+    SPLAT_RADIUS: 0.14,
+    SPLAT_FORCE: 3200,
     SHADING: false,
-    COLOR_UPDATE_SPEED: 0,
+    COLOR_UPDATE_SPEED: 0.08,
     PAUSED: false,
     BACK_COLOR: { r: 0, g: 0, b: 0 },
     TRANSPARENT: true,
@@ -1249,9 +1249,16 @@ const useFluidCursor = () => {
   }
 
   function generateColor() {
-    // Minimal grayscale palette — soft white/gray tones only
-    const v = 0.18 + Math.random() * 0.07;
-    return { r: v, g: v, b: v };
+    // Muted dark-academia tones with subtle screenshot-inspired slate/teal hints
+    const palette = [
+      { r: 130 / 255, g: 148 / 255, b: 107 / 255 }, // lifted sage
+      { r: 87 / 255, g: 102 / 255, b: 61 / 255 }, // olive
+      { r: 196 / 255, g: 168 / 255, b: 108 / 255 }, // antique gold
+      { r: 187 / 255, g: 150 / 255, b: 113 / 255 }, // warm sepia
+      { r: 63 / 255, g: 89 / 255, b: 88 / 255 }, // muted teal
+      { r: 122 / 255, g: 119 / 255, b: 116 / 255 }, // soft slate
+    ];
+    return palette[Math.floor(Math.random() * palette.length)];
   }
 
   function HSVtoRGB(h, s, v) {

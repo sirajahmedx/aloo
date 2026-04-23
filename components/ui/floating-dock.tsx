@@ -45,7 +45,7 @@ const FloatingDockMobile = ({
   return (
     <div
       className={cn(
-        "fixed bottom-4 left-1/2 z-50 flex -translate-x-1/2 items-center gap-2 rounded-2xl border border-white/10 bg-neutral-900/80 px-3 py-2 backdrop-blur md:hidden max-w-[95vw] overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
+        "fixed bottom-4 left-1/2 z-50 flex -translate-x-1/2 items-center gap-2 rounded-2xl border border-[#B89B5E]/25 bg-[#4A3426]/85 px-3 py-2 shadow-[0_8px_24px_rgba(25,16,9,0.45)] backdrop-blur md:hidden max-w-[95vw] overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
         className
       )}
     >
@@ -58,8 +58,8 @@ const FloatingDockMobile = ({
           className={cn(
             "flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/10 transition-all active:scale-90",
             item.active
-              ? "bg-white/20 text-white shadow-[0_0_15px_rgba(255,255,255,0.15)]"
-              : "bg-neutral-800/80 text-neutral-400"
+              ? "border-[#B89B5E]/50 bg-[#B89B5E]/25 text-[#E8DDC7] shadow-[0_0_20px_rgba(184,155,94,0.22)]"
+              : "border-[#6E7F5B]/35 bg-[#2B1D14]/70 text-[#C7B89D]"
           )}
         >
           <div className="h-4 w-4">{item.icon}</div>
@@ -83,7 +83,7 @@ const FloatingDockDesktop = ({
       onMouseMove={(e) => mouseX.set(e.pageX)}
       onMouseLeave={() => mouseX.set(Infinity)}
       className={cn(
-        "fixed bottom-5 left-1/2 z-50 hidden h-14 -translate-x-1/2 items-end gap-3 rounded-2xl border border-white/10 bg-neutral-900/60 px-3 pb-2 backdrop-blur md:flex",
+        "fixed bottom-5 left-1/2 z-50 hidden h-14 -translate-x-1/2 items-end gap-3 rounded-2xl border border-[#B89B5E]/25 bg-[#4A3426]/78 px-3 pb-2 shadow-[0_12px_30px_rgba(25,16,9,0.5)] backdrop-blur md:flex",
         className
       )}
     >
@@ -139,10 +139,10 @@ const heightIcon = useTransform(distance, [-150, 0, 150], [14, 26, 14]);
       <motion.div
         style={{ width, height }}
         className={cn(
-          "relative flex aspect-square items-center justify-center rounded-full border border-white/10 transition-colors",
+          "relative flex aspect-square items-center justify-center rounded-full border transition-colors",
           active
-            ? "bg-white/20 text-white shadow-[0_0_20px_rgba(255,255,255,0.15)]"
-            : "bg-neutral-800/80 text-neutral-300 hover:bg-white/15 hover:text-white"
+            ? "border-[#B89B5E]/55 bg-[#B89B5E]/25 text-[#E8DDC7] shadow-[0_0_26px_rgba(184,155,94,0.24)]"
+            : "border-[#6E7F5B]/35 bg-[#2B1D14]/72 text-[#D7CAB0] hover:bg-[#6E7F5B]/25 hover:text-[#E8DDC7]"
         )}
       >
         <AnimatePresence>
@@ -151,7 +151,7 @@ const heightIcon = useTransform(distance, [-150, 0, 150], [14, 26, 14]);
               initial={{ opacity: 0, y: 6, x: "-50%" }}
               animate={{ opacity: 1, y: 0, x: "-50%" }}
               exit={{ opacity: 0, y: 4, x: "-50%" }}
-              className="absolute -top-8 left-1/2 w-fit whitespace-pre rounded-md border border-white/10 bg-neutral-900 px-2 py-0.5 text-xs text-white"
+              className="absolute -top-8 left-1/2 w-fit whitespace-pre rounded-md border border-[#B89B5E]/30 bg-[#2B1D14]/95 px-2 py-0.5 text-xs text-[#E8DDC7]"
             >
               {title}
             </motion.div>
