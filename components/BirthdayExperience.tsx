@@ -116,7 +116,7 @@ const scenes = [
   { id: "hero", duration: 90000, label: "Quiet Voices" },
   { id: "transition", duration: 18000, label: "Turn" },
   { id: "strong", duration: 11000, label: "Stay Soft" },
-  { id: "letter", duration: 32000, label: "Letter" },
+  { id: "letter", duration: 90000, label: "Letter" },
   { id: "closing", duration: 9999999, label: "Closing" },
 ];
 
@@ -129,12 +129,10 @@ const sceneIcons: Record<string, React.ReactNode> = {
   closing: <IconStars className="h-full w-full" />,
 };
 
-/* ─── Animation constants ─── */
 
 const ease = [0.2, 0.95, 0.3, 1] as const;
 const fadeTransition = { duration: 1.95, ease };
 
-/* ─── Backgrounds ─── */
 
 function GridBackground() {
   return (
@@ -160,7 +158,6 @@ function GridBackground() {
   );
 }
 
-/* ─── Staggered text block ─── */
 
 function StaggeredLines({
   lines,
@@ -190,7 +187,6 @@ function StaggeredLines({
   );
 }
 
-/* ─── Scene: Opening ─── */
 
 function Opening() {
   return (
@@ -214,7 +210,6 @@ function Opening() {
   );
 }
 
-/* ─── Scene: Hero (quotes) ─── */
 
 function Hero() {
   return (
@@ -246,40 +241,31 @@ function Hero() {
   );
 }
 
-/* ─── Scene: Transition ─── */
 
 function Transition() {
   return (
-    <div className="flex h-full w-full flex-col items-center justify-center px-5 sm:px-8">
+    <div className="flex h-full w-full flex-col items-center justify-center px-5 sm:px-8 max-w-[min(800px,90vw)] mx-auto text-center">
       <StaggeredLines
         lines={[
-          "Put the books down for today.",
-          "no poetry, no pages.",
-          "just you.",
-          "there is a kind of kindness that does not announce itself.",
-          "it just sits with you until you feel it.",
+          "you carry a kindness that never needed to be introduced.",
+          "it just sits with you,",
+          "making you aware of its presence.",
           "you have that.",
-          "your words land somewhere quiet and real.",
-          "your presence makes people feel less alone without trying.",
-          "that is yours. and it is rare.",
+          "your words find the parts of the heart",
+          "that people forget to guard.",
+          "your presence makes people feel less alone,",
+          "naturally.",
+          "not everyone carries this.",
+          "you do — safa",
         ]}
         stagger={1.25}
         start={0}
-        className={(i) =>
-          i === 0
-            ? "font-serif text-2xl leading-[1.66] font-semibold tracking-[0.01em] text-transparent bg-clip-text bg-gradient-to-br from-[#2B1D14] to-[#4A3426] sm:text-4xl md:text-5xl lg:text-6xl"
-            : i === 1 || i === 2
-              ? "font-sans text-lg leading-[1.85] font-normal tracking-[0.005em] text-[#5A4637] sm:text-2xl md:text-3xl lg:text-4xl"
-              : i === 5 || i === 8
-                ? "font-serif text-lg leading-[1.75] font-semibold italic tracking-[0.008em] text-transparent bg-clip-text bg-gradient-to-br from-[#2B1D14] to-[#4A3426] sm:text-2xl md:text-3xl"
-                : "font-sans text-base leading-[1.9] font-normal tracking-[0.004em] text-[#6B5643] sm:text-xl md:text-2xl max-w-[min(780px,92vw)]"
-        }
+        className={() => "font-serif text-xl leading-[1.35] font-medium text-[#5A4637] sm:text-2xl md:text-3xl lg:text-4xl"}
       />
     </div>
   );
 }
 
-/* ─── Scene: Strong line ─── */
 
 function StrongLine() {
   return (
@@ -288,7 +274,7 @@ function StrongLine() {
         lines={[
           "Do not be harsh on yourself,",
           "daffodils do not rush their blooming,",
-          "and neither should you -safa",
+          "and neither should you — safa",
         ]}
         stagger={1.6}
         className={() =>
@@ -299,7 +285,6 @@ function StrongLine() {
   );
 }
 
-/* ─── Scene: Letter ─── */
 
 function Letter() {
   const [selectedLetter, setSelectedLetter] = useState<(typeof letterCards)[number] | null>(null);
@@ -438,7 +423,6 @@ function Letter() {
   );
 }
 
-/* ─── Scene: Closing ─── */
 
 function Closing() {
   return (
@@ -460,7 +444,6 @@ function Closing() {
         and the world feels softer because you are in it.
       </motion.p>
 
-      {/* Sparkle strip */}
       <div className="relative mt-4 h-32 w-full max-w-[40rem] sm:h-40">
         <div className="absolute inset-x-10 top-0 h-[2px] w-3/4 bg-gradient-to-r from-transparent via-[#B89B5E]/70 to-transparent blur-sm sm:inset-x-20" />
         <div className="absolute inset-x-10 top-0 h-px w-3/4 bg-gradient-to-r from-transparent via-[#B89B5E]/50 to-transparent sm:inset-x-20" />
@@ -486,7 +469,6 @@ function Closing() {
   );
 }
 
-/* ─── Scene router ─── */
 
 const renderScene = (id: string) => {
   switch (id) {
@@ -500,7 +482,6 @@ const renderScene = (id: string) => {
   }
 };
 
-/* ─── Main experience ─── */
 
 export function BirthdayExperience() {
   const [index, setIndex] = useState(0);

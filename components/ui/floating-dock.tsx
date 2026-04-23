@@ -145,18 +145,7 @@ const heightIcon = useTransform(distance, [-150, 0, 150], [14, 26, 14]);
               : "border-[#6E7F5B]/35 bg-[#2B1D14]/72 text-[#D7CAB0] hover:bg-[#2f4f4f]/80 hover:text-[#E8DDC7] hover:border-[#2f4f4f]/50 hover:shadow-[0_0_15px_rgba(47,79,79,0.4)]"
         )}
       >
-        <AnimatePresence>
-          {hovered && (
-            <motion.div
-              initial={{ opacity: 0, y: 6, x: "-50%" }}
-              animate={{ opacity: 1, y: 0, x: "-50%" }}
-              exit={{ opacity: 0, y: 4, x: "-50%" }}
-              className="absolute -top-8 left-1/2 w-fit whitespace-pre rounded-md border border-[#2f4f4f]/50 bg-[#2B1D14]/95 px-2 py-0.5 text-xs text-[#E8DDC7] shadow-[0_4px_12px_rgba(47,79,79,0.2)]"
-            >
-              {title}
-            </motion.div>
-          )}
-        </AnimatePresence>
+        {/* tooltip removed */}
         <motion.div
           style={{ width: widthI, height: heightI }}
           className="flex items-center justify-center"
