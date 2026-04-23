@@ -1,9 +1,36 @@
 
+// @ts-nocheck
+
 const useFluidCursor = () => {
-  const canvas = document.getElementById("fluid");
+  const canvas = document.getElementById("fluid") as HTMLCanvasElement | null;
+  if (!canvas) return;
   resizeCanvas();
 
+  class Pointer {
+    id: number;
+    texcoordX: number;
+    texcoordY: number;
+    prevTexcoordX: number;
+    prevTexcoordY: number;
+    deltaX: number;
+    deltaY: number;
+    down: boolean;
+    moved: boolean;
+    color: [number, number, number];
 
+    constructor() {
+      this.id = -1;
+      this.texcoordX = 0;
+      this.texcoordY = 0;
+      this.prevTexcoordX = 0;
+      this.prevTexcoordY = 0;
+      this.deltaX = 0;
+      this.deltaY = 0;
+      this.down = false;
+      this.moved = false;
+      this.color = [0, 0, 0];
+    }
+  }
 
   let config = {
     SIM_RESOLUTION: 128,
@@ -23,21 +50,8 @@ const useFluidCursor = () => {
     TRANSPARENT: true,
   };
 
-  function pointerPrototype() {
-    this.id = -1;
-    this.texcoordX = 0;
-    this.texcoordY = 0;
-    this.prevTexcoordX = 0;
-    this.prevTexcoordY = 0;
-    this.deltaX = 0;
-    this.deltaY = 0;
-    this.down = false;
-    this.moved = false;
-    this.color = [0, 0, 0];
-  }
-
-  const pointers = [];
-  pointers.push(new pointerPrototype());
+  const pointers: Pointer[] = [];
+  pointers.push(new Pointer());
 
   const { gl, ext } = getWebGLContext(canvas);
 
@@ -46,7 +60,7 @@ const useFluidCursor = () => {
     config.SHADING = false;
   }
 
-  function getWebGLContext(canvas) {
+  function getWebGLContext(canvas: HTMLCanvasElement) {
     const params = {
       alpha: true,
       depth: false,
@@ -55,45 +69,53 @@ const useFluidCursor = () => {
       preserveDrawingBuffer: false,
     };
 
-    let gl = canvas.getContext("webgl2", params);
-    const isWebGL2 = !!gl;
-    if (!isWebGL2)
-      gl =
-        canvas.getContext("webgl", params) ||
-        canvas.getContext("experimental-webgl", params);
+    const gl2 = canvas.getContext("webgl2", params) as WebGL2RenderingContext | null;
+    const isWebGL2 = !!gl2;
+    const gl: WebGL2RenderingContext | WebGLRenderingContext | null =
+      gl2 ||
+      ((canvas.getContext("webgl", params) ||
+        canvas.getContext("experimental-webgl", params)) as WebGLRenderingContext | null);
+    if (!gl) {
+      throw new Error("WebGL is not supported in this environment.");
+    }
 
-    let halfFloat;
-    let supportLinearFiltering;
+    let halfFloat: OES_texture_half_float | null = null;
+    let supportLinearFiltering: OES_texture_float_linear | OES_texture_half_float_linear | null =
+      null;
     if (isWebGL2) {
-      gl.getExtension("EXT_color_buffer_float");
-      supportLinearFiltering = gl.getExtension("OES_texture_float_linear");
+      const glWebGL2 = gl as WebGL2RenderingContext;
+      glWebGL2.getExtension("EXT_color_buffer_float");
+      supportLinearFiltering = glWebGL2.getExtension("OES_texture_float_linear");
     } else {
-      halfFloat = gl.getExtension("OES_texture_half_float");
-      supportLinearFiltering = gl.getExtension("OES_texture_half_float_linear");
+      const glWebGL1 = gl as WebGLRenderingContext;
+      halfFloat = glWebGL1.getExtension("OES_texture_half_float");
+      supportLinearFiltering = glWebGL1.getExtension("OES_texture_half_float_linear");
     }
 
     gl.clearColor(0.0, 0.0, 0.0, 1.0);
 
     const halfFloatTexType = isWebGL2
-      ? gl.HALF_FLOAT
-      : halfFloat.HALF_FLOAT_OES;
+      ? (gl as WebGL2RenderingContext).HALF_FLOAT
+      : halfFloat!.HALF_FLOAT_OES;
     let formatRGBA;
     let formatRG;
     let formatR;
 
     if (isWebGL2) {
+      const glWebGL2 = gl as WebGL2RenderingContext;
       formatRGBA = getSupportedFormat(
-        gl,
-        gl.RGBA16F,
-        gl.RGBA,
+        glWebGL2,
+        glWebGL2.RGBA16F,
+        glWebGL2.RGBA,
         halfFloatTexType
       );
-      formatRG = getSupportedFormat(gl, gl.RG16F, gl.RG, halfFloatTexType);
-      formatR = getSupportedFormat(gl, gl.R16F, gl.RED, halfFloatTexType);
+      formatRG = getSupportedFormat(glWebGL2, glWebGL2.RG16F, glWebGL2.RG, halfFloatTexType);
+      formatR = getSupportedFormat(glWebGL2, glWebGL2.R16F, glWebGL2.RED, halfFloatTexType);
     } else {
+      const glWebGL1 = gl as WebGLRenderingContext;
       formatRGBA = getSupportedFormat(gl, gl.RGBA, gl.RGBA, halfFloatTexType);
-      formatRG = getSupportedFormat(gl, gl.RGBA, gl.RGBA, halfFloatTexType);
-      formatR = getSupportedFormat(gl, gl.RGBA, gl.RGBA, halfFloatTexType);
+      formatRG = getSupportedFormat(glWebGL1, glWebGL1.RGBA, glWebGL1.RGBA, halfFloatTexType);
+      formatR = getSupportedFormat(glWebGL1, glWebGL1.RGBA, glWebGL1.RGBA, halfFloatTexType);
     }
 
     return {
@@ -108,16 +130,25 @@ const useFluidCursor = () => {
     };
   }
 
-  function getSupportedFormat(gl, internalFormat, format, type) {
+  function getSupportedFormat(
+    gl: WebGL2RenderingContext | WebGLRenderingContext,
+    internalFormat: number,
+    format: number,
+    type: number
+  ) {
     if (!supportRenderTextureFormat(gl, internalFormat, format, type)) {
-      switch (internalFormat) {
-        case gl.R16F:
-          return getSupportedFormat(gl, gl.RG16F, gl.RG, type);
-        case gl.RG16F:
-          return getSupportedFormat(gl, gl.RGBA16F, gl.RGBA, type);
-        default:
-          return null;
+      if ("R16F" in gl) {
+        const gl2 = gl as WebGL2RenderingContext;
+        switch (internalFormat) {
+          case gl2.R16F:
+            return getSupportedFormat(gl2, gl2.RG16F, gl2.RG, type);
+          case gl2.RG16F:
+            return getSupportedFormat(gl2, gl2.RGBA16F, gl2.RGBA, type);
+          default:
+            return null;
+        }
       }
+      return null;
     }
 
     return {
@@ -126,7 +157,12 @@ const useFluidCursor = () => {
     };
   }
 
-  function supportRenderTextureFormat(gl, internalFormat, format, type) {
+  function supportRenderTextureFormat(
+    gl: WebGL2RenderingContext | WebGLRenderingContext,
+    internalFormat: number,
+    format: number,
+    type: number
+  ) {
     const texture = gl.createTexture();
     gl.bindTexture(gl.TEXTURE_2D, texture);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.NEAREST);

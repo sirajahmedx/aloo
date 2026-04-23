@@ -6,8 +6,6 @@ import {
   motion,
   useAnimationFrame,
   useMotionValue,
-  useTransform,
-  wrap,
 } from "motion/react";
 
 export const InfiniteMovingCards = ({

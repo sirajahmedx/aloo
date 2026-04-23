@@ -41,10 +41,10 @@ const testimonials = [
 ];
 
 const heroLines = [
-  "some people walk in and the air shifts a little.",
-  "you are one of those people.",
-  "happy birthday, alloo.",
-  "we are glad you exist.",
+  "Some people walk in and the air shifts a little.",
+  "You are one of those people.",
+  "Happy Birthday, alloo.",
+  "We are glad you exist.",
 ];
 
 const letterCards = [
@@ -52,7 +52,7 @@ const letterCards = [
   {
     title: "Saif's Letter",
     preview:
-      "Talking to you feels easy, like one of those days that’s warm for no reason — and it means a lot.",
+      "Talking to you feels easy, like one of those days that’s warm for no reason and it means a lot.",
     meta: "from saif",
     content: [
       "Happy birthday, aloo. Talking to you just feels easy, like one of those days that's warm for no reason. You make people feel heard without even trying, and that actually means a lot.",
