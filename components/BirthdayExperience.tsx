@@ -20,7 +20,7 @@ import FluidCursor from "@/components/FluidCursor";
 const testimonials = [
   {
     quote:
-      "He walks in quietly, and the room feels lighter. Talking to him feels easy, and before you notice, you are smiling for no reason.",
+      "‎actual incandescent ball of sunshine! Who wouldn't want to chat with him? he's great with his words (p.s gets philosophical too) and that's what i love about aloo.",
     name: "saba",
   },
   {
@@ -48,7 +48,7 @@ const heroLines = [
 ];
 
 const letterCards = [
- 
+
   {
     title: "Saif's Letter",
     preview:
@@ -96,7 +96,20 @@ const letterCards = [
       "from ahmed",
     ],
   },
+  {
+    title: "Safa's Letter",
+    preview:
+      "may this day unfold like a soft morning breeze—gentle, warm, and full of hope.",
+    meta: "from safa",
+    content: [
+      "Happy birthday, Allu. May this day unfold like a soft morning breeze, where the rich, warm, earthy scent of coffee lingers in the air and the world feels a little kinder. Even if sadness finds its way into your heart, remember that daffodils still bloom vibrant and golden after the coldest nights as if they never doubted the sun would return. So never leave hope.",
+      "May this year bring you a thousand flowers, each one a small hope planted and slowly coming to light. Just be yourself kind, soft, and wonderfully resilient and always be gentle with your own heart.",
+      "When the world feel like too much, I hope you remember that you have friends who will listen to you patiently, without hurry",
+      "_safa",
+    ],
+  },
 ];
+
 
 const scenes = [
   { id: "opening", duration: 14700, label: "Opening" },
