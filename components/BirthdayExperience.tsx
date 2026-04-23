@@ -19,44 +19,51 @@ import FluidCursor from "@/components/FluidCursor";
 /* ─── Data ─── */
 
 const testimonials = [
-  { quote: "The best word to describe your presence allu is zephyr. A gentle breeze of the morning that makes you feel refreshed.", name: "stella" },
-  { quote: "There\u2019s a stillness in him. Not emptiness. Stillness. Like someone who has felt a lot and chose to carry it quietly.", name: "anonymous" },
-  { quote: "He\u2019s mature in a way that feels natural, not forced. Knows when to speak, knows when to just be there.", name: "anonymous" },
-  { quote: "When he talks about something he cares about, you feel it. He means what he says. Every word comes from somewhere real.", name: "anonymous" },
-  { quote: "Aluu the guy who first takes bout the poetry and books the sweetest guy.", name: "ahmed" },
+  {
+    quote:
+      "He walks in quietly, and the room feels lighter. Talking to him feels easy, and before you notice, you are smiling for no reason.",
+    name: "saba",
+  },
+  {
+    quote:
+      "If I had to name his presence, I would call it a soft morning breeze. Gentle, calm, and somehow always enough.",
+    name: "stella",
+  },
+  {
+    quote:
+      "He starts with books and poetry, then turns simple moments into something warm. That sweetness is just who he is.",
+    name: "ahmed",
+  },
 ];
 
 const heroLines = [
-  "Some people talk.",
+  "Some people only speak to fill silence.",
   "Some people speak to be heard.",
   "He speaks to be understood.",
-  "There\u2019s a difference.",
+  "That is where this story begins.",
 ];
 
 const letterCards = [
-  {
-    title: "Penguin's Letter",
-    preview:
-      "I hope today feels like the first page of something good. I hope the people around you actually see you, not just the quiet, but what's underneath it.",
-    meta: "With love, from Penguin",
-    content: [
-      "I hope today feels like the first page of something good",
-      "I hope the people around you actually see you, not just the quiet, but what's underneath it",
-      "I hope you keep writing, even when it feels like no one's reading",
-      "I hope you keep feeling things fully, even when it's easier not to",
-      "Keep going quiet when you need to.",
-      "Keep being the person whose silence says something.",
-      "The world needs more of that. More of you.",
-    ],
-  },
+ 
   {
     title: "Saif's Letter",
     preview:
-      "Talking to you feels easy, like a warm day for no reason. You make people feel heard without trying, and that means more than you think.",
-    meta: "From Saif",
+      "A simple birthday wish, and a memory of how easy it feels to be around you.",
+    meta: "from saif",
     content: [
       "Happy birthday, aloo. Talking to you just feels easy, like one of those days that's warm for no reason. You make people feel heard without even trying, and that actually means a lot.",
       "I love our deep talks, even when you go way off track. You've got a way with words too, so I'm definitely waiting on more of your writing. Hope we stay like this for a long time.",
+    ],
+  },
+  {
+    title: "Saba's Letter",
+    preview:
+      "A warm birthday note filled with love, joy, and admiration for the way you brighten people around you.",
+    meta: "With love, Saba",
+    content: [
+      "‎Happy Birthday Alloo! I hope you have an awesome day today. Cheers to another chapter in your life and also congrats on coming this far. I hope your special day is filled with love and joy just like how you fill everyone else's day with joy and love.",
+      "‎Your deep passion for literature, books and wholesome stuff in general really fills me with awe and i just adore how you radiate this warm energy that brighten ups everyone's mood. I love talking to you! So make sure to have fun today and eat a yummy cake to celebrate YOU ❤ 🎂",
+      "- Saba",
     ],
   },
 ];
@@ -81,8 +88,8 @@ const sceneIcons: Record<string, React.ReactNode> = {
 
 /* ─── Animation constants ─── */
 
-const ease = [0.22, 1, 0.36, 1] as const;
-const fadeTransition = { duration: 2.1, ease };
+const ease = [0.2, 0.95, 0.3, 1] as const;
+const fadeTransition = { duration: 1.95, ease };
 
 /* ─── Backgrounds ─── */
 
@@ -147,17 +154,17 @@ function Opening() {
     <div className="flex h-full w-full flex-col items-center justify-center px-6 sm:px-10">
       <StaggeredLines
         lines={[
-          "This is for the sweetest person I\u2019ve ever met who is also, somehow, obsessed with books.",
-          "So naturally, this started there.",
-          "But it was never really about books.",
-          "It\u2019s about the person who reads them like he\u2019s looking for something.",
-          "And maybe that\u2019s the whole point.",
+          "This is for one of the sweetest people I have ever met,",
+          "and yes, for someone who somehow loves books this much.",
+          "So naturally, the story starts there.",
+          "But it was never only about books.",
+          "It was always about the heart of the person reading them.",
         ]}
         stagger={1.2}
         className={(i) =>
           i === 0
             ? "font-serif text-lg leading-[1.68] font-semibold tracking-[0.01em] text-transparent bg-clip-text bg-gradient-to-br from-[#2B1D14] to-[#4A3426] sm:text-2xl md:text-3xl lg:text-4xl max-w-[min(640px,88vw)]"
-            : "font-serif text-base leading-[1.75] tracking-[0.004em] text-transparent bg-clip-text bg-gradient-to-br from-[#4A3426] to-[#6B5645] sm:text-lg md:text-xl lg:text-2xl max-w-[min(560px,86vw)]"
+            : "font-sans text-base leading-[1.82] font-normal tracking-[0.004em] text-[#5A4534] sm:text-lg md:text-xl lg:text-2xl max-w-[min(560px,86vw)]"
         }
       />
     </div>
@@ -168,25 +175,29 @@ function Opening() {
 
 function Hero() {
   return (
-    <div className="flex h-full w-full flex-col items-center justify-center gap-4 px-4 sm:gap-8 sm:px-6">
+    <div className="flex h-full w-full flex-col items-center justify-center gap-5 px-4 sm:gap-8 sm:px-6">
       <StaggeredLines
         lines={heroLines}
         stagger={1.3}
         className={(i) =>
           i === 0 || i === 1
-            ? "font-serif text-base leading-[1.75] font-light tracking-[0.004em] text-transparent bg-clip-text bg-gradient-to-br from-[#5A4534] to-[#7A654F] sm:text-xl md:text-2xl lg:text-3xl"
+            ? "font-sans text-base leading-[1.85] font-normal tracking-[0.004em] text-[#5E4A39] sm:text-xl md:text-2xl lg:text-3xl"
             : i === 2
               ? "font-serif text-xl leading-[1.72] font-semibold tracking-[0.01em] text-transparent bg-clip-text bg-gradient-to-br from-[#2B1D14] to-[#4A3426] sm:text-3xl md:text-4xl lg:text-5xl"
-              : "font-serif text-sm leading-[1.76] font-light italic tracking-[0.006em] text-transparent bg-clip-text bg-gradient-to-br from-[#6E7F5B] to-[#4E5C3D] sm:text-lg md:text-xl"
+              : "font-serif text-sm leading-[1.82] font-medium italic tracking-[0.006em] text-[#6E7F5B] sm:text-lg md:text-xl"
         }
       />
       <motion.div
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 2.5, delay: 6, ease }}
-        className="mt-4 w-full max-w-5xl sm:mt-6"
+        className="mt-5 flex w-full max-w-6xl flex-col items-center sm:mt-7"
       >
-        <InfiniteMovingCards items={testimonials} direction="right" speed="slow" />
+        <p className="mb-4 text-center font-serif text-xl font-semibold tracking-[0.02em] text-[#2B1D14] sm:mb-5 sm:text-2xl">
+          voices from the same story
+        </p>
+        <div className="h-px w-28 bg-gradient-to-r from-transparent via-[#2F4F4F]/50 to-transparent sm:w-36" />
+        <InfiniteMovingCards items={testimonials} direction="right" speed="normal" />
       </motion.div>
     </div>
   );
@@ -199,32 +210,32 @@ function Transition() {
     <div className="flex h-full w-full flex-col items-center justify-center gap-10 px-5 sm:gap-14 sm:px-8">
       <StaggeredLines
         lines={[
-          "But today is just about you.",
+          "Today, it is only about you.",
           "Not what you write. Not what you read.",
-          "Just you.",
+          "Just you, as you are.",
         ]}
         stagger={1.8}
         start={0}
         className={(i) =>
           i === 0
             ? "font-serif text-2xl leading-[1.66] font-semibold tracking-[0.01em] text-transparent bg-clip-text bg-gradient-to-br from-[#2B1D14] to-[#4A3426] sm:text-4xl md:text-5xl lg:text-6xl"
-            : "font-serif text-lg leading-[1.72] font-light tracking-[0.005em] text-transparent bg-clip-text bg-gradient-to-br from-[#4A3426] to-[#6E7F5B] sm:text-2xl md:text-3xl lg:text-4xl"
+            : "font-sans text-lg leading-[1.85] font-normal tracking-[0.005em] text-[#5A4637] sm:text-2xl md:text-3xl lg:text-4xl"
         }
       />
       <StaggeredLines
         lines={[
-          "You are one of those people who makes everything feel a little lighter.",
-          "Being around you just feels easy.",
-          "And that\u2019s a rare thing to be.",
+          "You are one of those people who makes everything feel lighter.",
+          "Being around you feels easy, in the best way.",
+          "That is a rare thing to find.",
         ]}
         stagger={1.6}
-        start={8.0}
+        start={6.4}
         className={(i) =>
           i === 0
-            ? "font-serif text-lg leading-[1.76] font-light tracking-[0.004em] text-transparent bg-clip-text bg-gradient-to-br from-[#4A3426] to-[#7A6550] sm:text-2xl md:text-3xl max-w-[min(640px,88vw)]"
+            ? "font-sans text-lg leading-[1.88] font-normal tracking-[0.004em] text-[#5A4534] sm:text-2xl md:text-3xl max-w-[min(640px,88vw)]"
             : i === 2
               ? "font-serif text-lg leading-[1.76] font-semibold italic tracking-[0.008em] text-transparent bg-clip-text bg-gradient-to-br from-[#2B1D14] to-[#4A3426] sm:text-2xl md:text-3xl"
-              : "font-serif text-base leading-[1.75] font-light tracking-[0.004em] text-transparent bg-clip-text bg-gradient-to-br from-[#6B5643] to-[#6E7F5B] sm:text-xl md:text-2xl"
+              : "font-sans text-base leading-[1.84] font-normal tracking-[0.004em] text-[#6B5643] sm:text-xl md:text-2xl"
         }
       />
     </div>
@@ -238,9 +249,9 @@ function StrongLine() {
     <div className="flex h-full w-full items-center justify-center px-5 sm:px-8">
       <StaggeredLines
         lines={[
-          "Don't be harsh on yourself,",
-          "daffodils don't rush their blooming,",
-          "neither should you.",
+          "Do not be harsh on yourself,",
+          "daffodils do not rush their blooming,",
+          "and neither should you.",
         ]}
         stagger={1.6}
         className={() =>
@@ -289,7 +300,7 @@ function Letter() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1.2, delay: 0.45, ease }}
-            className="font-serif text-lg text-[#4A3426] sm:text-2xl"
+            className="font-sans text-lg tracking-[0.01em] text-[#4A3426] sm:text-2xl"
           >
             Happy Birthday
           </motion.p>
@@ -304,7 +315,7 @@ function Letter() {
           <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-[#E8DDC7] to-transparent sm:w-20" />
           <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-[#E8DDC7] to-transparent sm:w-20" />
 
-          <div className="flex snap-x snap-mandatory gap-5 overflow-x-auto px-5 pb-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:gap-7 sm:px-10">
+          <div className="flex snap-x snap-mandatory scroll-smooth gap-5 overflow-x-auto px-5 pb-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:gap-7 sm:px-10">
             {[...letterCards, ...letterCards].map((card, i) => (
               <motion.button
                 key={`${card.title}-${i}`}
@@ -312,7 +323,7 @@ function Letter() {
                 whileTap={{ scale: 0.99 }}
                 transition={{ duration: 0.45, ease }}
                 onClick={() => setSelectedLetter(card)}
-                className="group relative min-h-[280px] w-[84vw] max-w-[430px] snap-center shrink-0 rounded-[24px] border border-[#B89B5E]/35 bg-gradient-to-br from-[#4A3426] via-[#3B2A1F] to-[#2B1D14] p-7 text-left text-[#E8DDC7] shadow-[0_14px_30px_rgba(25,16,9,0.35)] outline-none transition-shadow duration-500 hover:shadow-[0_18px_38px_rgba(25,16,9,0.45),0_0_22px_rgba(63,89,88,0.16)] focus-visible:ring-2 focus-visible:ring-[#7A8D87]/70 sm:min-h-[320px] sm:p-9"
+                className="group relative min-h-[280px] w-[84vw] max-w-[430px] snap-center shrink-0 rounded-[24px] border border-[#B89B5E]/35 bg-gradient-to-br from-[#4A3426] via-[#3B2A1F] to-[#2B1D14] p-7 text-left text-[#E8DDC7] shadow-[0_14px_30px_rgba(25,16,9,0.35)] outline-none transition-shadow duration-500 hover:shadow-[0_18px_38px_rgba(25,16,9,0.45),0_0_22px_rgba(47,79,79,0.2)] focus-visible:ring-2 focus-visible:ring-[#2F4F4F]/65 sm:min-h-[320px] sm:p-9"
                 type="button"
               >
                 <div
@@ -330,7 +341,7 @@ function Letter() {
                   <h3 className="mb-3 font-serif text-2xl font-semibold tracking-[0.01em] text-[#F0E6D2] sm:text-3xl">
                     {card.title}
                   </h3>
-                  <p className="line-clamp-5 font-serif text-[17px] leading-[1.78] text-[#D9CCB2] sm:text-[18px]">
+                  <p className="line-clamp-5 font-sans text-[15px] leading-[1.86] tracking-[0.003em] text-[#D9CCB2] sm:text-[16px]">
                     {card.preview}
                   </p>
                   <p className="mt-auto border-t border-[#B89B5E]/30 pt-4 font-sans text-[11px] tracking-[0.2em] text-[#B89B5E] uppercase">
@@ -348,7 +359,7 @@ function Letter() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.42, ease }}
+              transition={{ duration: 0.48, ease }}
               className="fixed inset-0 z-[70] flex items-center justify-center bg-[#2B1D14]/55 px-4 backdrop-blur-sm"
               onClick={() => setSelectedLetter(null)}
             >
@@ -356,7 +367,7 @@ function Letter() {
                 initial={{ opacity: 0, y: 18, scale: 0.97 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: 14, scale: 0.98 }}
-                transition={{ duration: 0.52, ease }}
+                transition={{ duration: 0.58, ease }}
                 onClick={(e) => e.stopPropagation()}
                 className="relative max-h-[84dvh] w-full max-w-2xl overflow-y-auto rounded-[28px] border border-[#B89B5E]/35 bg-gradient-to-br from-[#F0E6D2] via-[#E8DDC7] to-[#E2D4B8] p-6 shadow-[0_28px_60px_rgba(22,14,8,0.35)] sm:p-9"
               >
@@ -376,7 +387,7 @@ function Letter() {
                 <p className="mb-6 border-b border-[#4A3426]/16 pb-4 font-sans text-[11px] tracking-[0.2em] text-[#7D6750] uppercase">
                   {selectedLetter.meta}
                 </p>
-                <div className="space-y-4 font-serif text-[18px] leading-[1.85] tracking-[0.002em] text-[#3B2A1F]">
+                <div className="space-y-4 font-sans text-[16px] leading-[1.9] tracking-[0.002em] text-[#3B2A1F] sm:text-[17px]">
                   {selectedLetter.content.map((line, lineIndex) => (
                     <p key={`${selectedLetter.title}-line-${lineIndex}`}>{line}</p>
                   ))}
@@ -409,7 +420,7 @@ function Closing() {
         transition={{ duration: 2, delay: 1.6, ease }}
         className="relative z-20 mt-6 max-w-[90vw] text-center font-serif text-lg font-light leading-[1.75] tracking-[0.01em] text-transparent bg-clip-text bg-gradient-to-br from-[#4A3426] to-[#6E7F5B] sm:mt-8 sm:text-2xl"
       >
-        and the world is softer because you&apos;re in it.
+        and the world feels softer because you are in it.
       </motion.p>
 
       {/* Sparkle strip */}
